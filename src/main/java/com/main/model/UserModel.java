@@ -7,37 +7,42 @@ import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 @Table("USERS")
-public class User implements UserDetails {
-    private @Column("USERNAME") @Getter String username;
-    private @Column("PASSWORD") @Getter String password;
+public class UserModel implements UserDetails {
+    private @Column("USERNAME") String username;
+    private @Column("PASSWORD") String password;
+
+    public UserModel(String username, String password) {
+        if(username == null) {
+            this.username = null;
+        } else {
+            this.username = username;
+        }
+
+        if(password == null) {
+            this.password = null;
+        } else {
+            this.password = password;
+        }
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Auto-generated method stub
         return null;
     }
     @Override
     public String getPassword() {
-        // TODO Auto-generated method stub
-        return null;
+        return password;
     }
     @Override
     public String getUsername() {
-        // TODO Auto-generated method stub
-        return null;
+        return username;
     }
     @Override
     public boolean isAccountNonExpired() {
-        // TODO Auto-generated method stub
         return false;
     }
     @Override
