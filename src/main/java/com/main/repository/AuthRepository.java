@@ -5,10 +5,11 @@ import com.main.model.UserModel;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AuthRepository extends CrudRepository<String, UserModel> {
+public interface AuthRepository extends CrudRepository<UserModel, Integer> {
     @Query("SELECT * FROM USERS WHERE USERNAME =: username") UserModel validateLogin(@Param("username") String username);
     @Query("INSERT INTO USERS VALUES(:username, :password)") Integer registerUser(@Param("username") String username, @Param("password") String password);
 }
