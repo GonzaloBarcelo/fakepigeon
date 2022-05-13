@@ -1,1 +1,0 @@
-INSERT INTO USERS VALUES ('admin','admin');
