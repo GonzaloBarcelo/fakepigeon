@@ -1,10 +1,10 @@
-package com.main.app.controller;
+package com.example.demo.controller;
 
 import java.util.List;
 
-import com.main.app.model.UserModel;
-import com.main.app.service.MessageService;
-import com.main.app.service.dto.*;
+import com.example.demo.model.PrivateMessageModel;
+import com.example.demo.services.PrivateChatService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,20 +13,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ChatController {
+public class ChatControllerPrivate {
     
     //TODO: PENSAR EN COMO HACER EL REFRESH DEL CHAT CUANDO SE ENVIA UN MENSAJE
 
     @Autowired
-    private MessageService messageService;
+    private PrivateChatService privateChatService;
 
     /*
     *   INITIAL MESSAGE LOAD. CUANDO SE LOGEE EL USUARIO SE CARGARÁN SUS CONVERSACIONES
     */
 
     @PostMapping(path="/initialMessageLoad",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<MessageDTO>> initialMessageLoad(@RequestBody UserModel loggedUser) {
-        return ResponseEntity.ok().body(messageService.initialMessageLoad(loggedUser.getUsername()));
+    public ResponseEntity<List<PrivateMessageModel>> initialMessageLoad(@RequestBody String loggedUser) {
+        return ResponseEntity.ok().body(privateChatService.initialMessageLoad(loggedUser));
     }
 
     /*
@@ -34,9 +34,7 @@ public class ChatController {
     */
 
     @PostMapping(path="/sendMessage",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> sendMessage(@RequestBody MessageDTO message) {
-        messageService.sendMessage(message);
-        return ResponseEntity.ok().body("{\"result\" : \"OK\"}");
+    public void storeMessage(@RequestBody PrivateMessageModel message) {
+        privateChatService.storeMessage(message);
     }
 }
-
