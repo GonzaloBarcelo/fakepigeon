@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <div id="chat-page" class="hidden">
+    <div id="chat-page" class="hidden chat-page">
         <div class="chat-container">
             <div class="chat-header">
                 <h2>fakepigeons GlobalChat</h2>
@@ -62,7 +62,7 @@
             <ul id="messageArea">
 
             </ul>
-            <form id="messageForm" name="messageForm">
+            <form id="messageForm" name="messageForm" class="messageForm">
                 <div class="form-group">
                     <div class="input-group clearfix">
                         <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
@@ -73,12 +73,29 @@
         </div>
     </div>
 
-    <div id="personal-page" class="hidden">
-        
+    <div id="personal-page" class="hidden chat-page">
+        <div class="chat-container">
+            <div class="chat-header">
+                <h2>fakepigeons GlobalChat</h2>
+            </div>
+            <ul id="privateArea">
+
+            </ul>
+            <form id="privateForm" name="privateForm" class="messageForm">
+                <div class="form-group">
+                    <div class="input-group clearfix">
+                        <input type="text" id="receiver" placeholder="Type a receiver..." autocomplete="off" class="form-control"/>
+                        <input type="text" id="private" placeholder="Type a message..." autocomplete="off" class="form-control"/>
+                        <button type="submit" class="primary">Send</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script src="./global.js"></script>
+    <script src="./private.js"></script>
   </body>
 </html>

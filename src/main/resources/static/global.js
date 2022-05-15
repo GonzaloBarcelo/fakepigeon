@@ -34,12 +34,10 @@ function connect(event) {
 
 function onConnected() {
     stompClient.subscribe('/topic/public', onMessageReceived);
-    stompClient.send("/app/chat.initialLoad")
     stompClient.send("/app/chat.addUser",
         {},
-        JSON.stringify({sender: username, messageType: 'JOIN', content: '$JOIN'})
-    
-    )
+        JSON.stringify({sender: username, messageType: 'JOIN', content: '$JOIN'}))
+    stompClient.send("/app/chat.initialLoad")
 
     connectingElement.classList.add('hidden');
 }

@@ -133,7 +133,7 @@ button.accent {
 }
 
 
-#chat-page {
+.chat-page {
     position: relative;
     height: 100%;
 }
@@ -150,7 +150,7 @@ button.accent {
     position: relative;
 }
 
-#chat-page ul {
+.chat-page ul {
     list-style-type: none;
     background-color: #FFF;
     margin: 0;
@@ -160,39 +160,39 @@ button.accent {
     height: calc(100% - 150px);
 }
 
-#chat-page #messageForm {
+.chat-page .messageForm {
     padding: 20px;
 }
 
-#chat-page ul li {
+.chat-page ul li {
     line-height: 1.5rem;
     padding: 10px 20px;
     margin: 0;
     border-bottom: 1px solid #f4f4f4;
 }
 
-#chat-page ul li p {
+.chat-page ul li p {
     margin: 0;
 }
 
-#chat-page .event-message {
+.chat-page .event-message {
     width: 100%;
     text-align: center;
     clear: both;
 }
 
-#chat-page .event-message p {
+.chat-page .event-message p {
     color: #777;
     font-size: 14px;
     word-wrap: break-word;
 }
 
-#chat-page .chat-message {
+.chat-page .chat-message {
     padding-left: 68px;
     position: relative;
 }
 
-#chat-page .chat-message i {
+.chat-page .chat-message i {
     position: absolute;
     width: 42px;
     height: 42px;
@@ -209,21 +209,21 @@ button.accent {
     text-transform: uppercase;
 }
 
-#chat-page .chat-message span {
+.chat-page .chat-message span {
     color: #333;
     font-weight: 600;
 }
 
-#chat-page .chat-message p {
+.chat-page .chat-message p {
     color: #43464b;
 }
 
-#messageForm .input-group input {
+.messageForm .input-group input {
     float: left;
     width: calc(100% - 85px);
 }
 
-#messageForm .input-group button {
+.messageForm .input-group button {
     float: left;
     width: 80px;
     height: 38px;
@@ -272,15 +272,15 @@ button.accent {
         padding: 25px;
     }
 
-    #chat-page ul {
+    .chat-page ul {
         height: calc(100% - 120px);
     }
 
-    #messageForm .input-group button {
+    .messageForm .input-group button {
         width: 65px;
     }
 
-    #messageForm .input-group input {
+    .messageForm .input-group input {
         width: calc(100% - 70px);
     }
 
