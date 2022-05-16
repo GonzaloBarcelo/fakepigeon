@@ -15,4 +15,4 @@ Como paradigma de programación, se emplea programación reactiva con una arquit
 
 El funcionamiento genérico es el siguiente. Se crea un endpoint al cual se suscriben los usuarios. Al recibirse un mensaje en el puerto de escucha abierto se ejecutan automáticamente las funciones encargadas de mostrar este mensaje. Al enviar un mensaje al endpoint también se guarda en una base de datos para que teóricamente al reiniciar la aplicación se carguen los mensajes anteriores. El modelo seguido es resumible en la siguiente imagen.
 
-<img src="https://www.altexsoft.com/media/2021/06/key-components-of-event-driven-architectures.png" width="50%" height="50%">
+<img src="https://www.altexsoft.com/media/2021/06/key-components-of-event-driven-architectures.png" align="center" width="50%" height="50%">
