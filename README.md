@@ -1,2 +1,5 @@
-# fakepigeon
-Chat by free pigeons because birds aren´t real.
+## PRACTICA FINAL PROGRAMACIÓN DE APLICACIONES TELEMÁTICAS. FAKEPIGEONS
+# CREADORES
+- Alejandro Manuel López Gómez
+- Gonzalo José Barceló
+- María Costa
