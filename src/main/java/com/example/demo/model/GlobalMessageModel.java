@@ -17,6 +17,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table("GLOBAL_MESSAGES")
 public class GlobalMessageModel implements Serializable {
+
     private @Column("GLOBAL_MESSAGE_ID") @Getter @Setter @Id @Generated Long globalMessageId;
     private @Column("MESSAGE_TYPE") @Getter @Setter MessageType messageType;
     private @Column("SENDER") @Getter @Setter String sender;

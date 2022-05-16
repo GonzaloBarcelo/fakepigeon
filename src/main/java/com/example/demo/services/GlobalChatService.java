@@ -22,5 +22,9 @@ public class GlobalChatService {
         globalChatRepository.storeMessage(message.getMessageType(), message.getSender(), message.getContent());
     }
 
+    public List<GlobalMessageModel> getAllMessages(){
+        return globalChatRepository.getAllMessages();
+    }
+
 
 }

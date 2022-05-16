@@ -20,9 +20,6 @@ function connect(event) {
     username = document.querySelector('#name').value.trim();
 
     if(username) {
-        usernamePage.classList.add('hidden');
-        chatPage.classList.remove('hidden');
-
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
 
@@ -38,10 +35,8 @@ function onConnected() {
     stompClient.send("/app/chat.addUser",
         {},
         JSON.stringify({sender: username, messageType: 'JOIN', content: '$JOIN'})
-    
-    )
 
-    connectingElement.classList.add('hidden');
+    )
 }
 
 
@@ -52,17 +47,18 @@ function onError(error) {
 
 
 function sendMessage(event) {
-    var messageContent = messageInput.value.trim();
+    var messageContent = document.querySelector('#message').value.trim();
+    console.log(messageContent);
     if(messageContent && stompClient) {
         var chatMessage = {
             sender: username,
-            content: messageInput.value,
+            content: messageContent,
             messageType: 'CHAT'
         };
         stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
-        messageInput.value = '';
+        //messageInput.value = '';
     }
-    event.preventDefault();
+
 }
 
 
@@ -80,23 +76,25 @@ function onMessageReceived(payload) {
     } else {
         messageElement.classList.add('chat-message');
 
-        var avatarElement = document.createElement('i');
-        var avatarText = document.createTextNode(message.sender[0]);
-        avatarElement.appendChild(avatarText);
-        avatarElement.style['background-color'] = getAvatarColor(message.sender);
+        //var avatarElement = document.createElement('i');
+        //var avatarText = document.createTextNode(message.sender[0]);
+        //avatarElement.appendChild(avatarText);
+        //avatarElement.style['background-color'] = getAvatarColor(message.sender);
 
-        messageElement.appendChild(avatarElement);
+        //messageElement.appendChild(avatarElement);
 
         var usernameElement = document.createElement('span');
         var usernameText = document.createTextNode(message.sender);
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
     }
+
     console.log("-------------------------");
-        console.log(message.messageType);
-        console.log(message.messageSender);
-        console.log(message.messageContent);
-        console.log("-------------------------");
+    console.log(message.messageType);
+    console.log(message.sender);
+    console.log(message.content);
+    console.log("-------------------------");
+
 
     var textElement = document.createElement('p');
     var messageText = document.createTextNode(message.content);
@@ -104,7 +102,9 @@ function onMessageReceived(payload) {
 
     messageElement.appendChild(textElement);
 
-    messageArea.appendChild(messageElement);
+    console.log(messageElement);
+
+    document.querySelector('#messageArea').appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
 }
 
@@ -131,7 +131,3 @@ function register(event){
 
 }
 
-usernameForm.addEventListener('submit', connect, true)
-messageForm.addEventListener('submit', sendMessage, true)
-
-registerUserForm.addEventListener('submit', register,true)
