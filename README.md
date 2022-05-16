@@ -1,9 +1,9 @@
 # FAKEPIGEONS
 ## PRACTICA FINAL PROGRAMACIÓN DE APLICACIONES TELEMÁTICAS.
 ## CREADORES
-- Alejandro Manuel López Gómez
-- Gonzalo José Barceló
-- María Costa
+- Alejandro Manuel López Gómez (Sistema de Mensajeria)
+- Gonzalo José Barceló (Sistema de usuarios)
+- María Costa (Diseño de HTML y CSS)
 
 ## DESCRICIÓN
 fakepigeons es una aplicación de chat que incorpora funcionalidades de mensajería privada y un chat global para todos los usuarios. Ha sido creada empleando componentes propios de SpringBoot dedicados especificamente a la creación de aplicaciones de chat.
