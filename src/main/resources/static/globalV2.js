@@ -48,6 +48,7 @@ function onError(error) {
 
 function sendMessage(event) {
     var messageContent = document.querySelector('#message').value.trim();
+    username = document.querySelector('#name').value.trim();
     console.log(messageContent);
     if(messageContent && stompClient) {
         var chatMessage = {
@@ -56,8 +57,10 @@ function sendMessage(event) {
             messageType: 'CHAT'
         };
         stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
-        //messageInput.value = '';
+        messageInput.value = '';
     }
+    event.preventDefault();
+
 
 }
 
@@ -76,12 +79,12 @@ function onMessageReceived(payload) {
     } else {
         messageElement.classList.add('chat-message');
 
-        //var avatarElement = document.createElement('i');
-        //var avatarText = document.createTextNode(message.sender[0]);
-        //avatarElement.appendChild(avatarText);
-        //avatarElement.style['background-color'] = getAvatarColor(message.sender);
+        var avatarElement = document.createElement('i');
+        var avatarText = document.createTextNode(message.sender[0]);
+        avatarElement.appendChild(avatarText);
+        avatarElement.style['background-color'] = getAvatarColor(message.sender);
 
-        //messageElement.appendChild(avatarElement);
+        messageElement.appendChild(avatarElement);
 
         var usernameElement = document.createElement('span');
         var usernameText = document.createTextNode(message.sender);
@@ -103,9 +106,8 @@ function onMessageReceived(payload) {
     messageElement.appendChild(textElement);
 
     console.log(messageElement);
-
     document.querySelector('#messageArea').appendChild(messageElement);
-    messageArea.scrollTop = messageArea.scrollHeight;
+
 }
 
 
@@ -118,16 +120,5 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-function register(event){
-    var name= document.querySelector("#usernameRegister").value.trim();
-    var pass= document.querySelector("#usernameRegister").value.trim();
-    if(name && pass){
-        var user={
-                username: name,
-                password: pass
-            };
-        stompClient.send("/addUser",{},JSON.stringify(user));
-    }
 
-}
 
