@@ -2,7 +2,7 @@
 ## PRACTICA FINAL PROGRAMACIÓN DE APLICACIONES TELEMÁTICAS.
 ## CREADORES
 - Alejandro Manuel López Gómez (Sistema de Mensajeria)
-- Gonzalo José Barceló (Sistema de usuarios)
+- Gonzalo José Barceló (Sistema de Usuarios)
 - María Costa (Diseño de HTML y CSS)
 
 ## DESCRICIÓN
