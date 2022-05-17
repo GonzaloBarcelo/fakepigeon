@@ -22,7 +22,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
+/*
     @PostMapping(path="/login")
     public ResponseEntity<HashMap<UserModel,Boolean>> login(@RequestBody UserModel user){
         System.out.println("Buscando login...");
@@ -36,6 +36,8 @@ public class UserController {
         return ResponseEntity.ok().body(status);
     }
 
+ */
+/*
     @GetMapping("/allUsers")
     public ResponseEntity<HashMap<Integer, ArrayList<String>>> getAllUsersNames(){
         HashMap<Integer, ArrayList<String>> status= new HashMap<>();
@@ -59,4 +61,6 @@ public class UserController {
 
     }
 
+
+ */
 }

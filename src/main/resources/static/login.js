@@ -1,9 +1,9 @@
 async function login(event){
     event.preventDefault();
-    var user=document.getElementById('username').value.trim();
+    var username=document.getElementById('username').value.trim();
     var pass=document.getElementById('password').value.trim();
 
-    let res= await fetch("/login",{
+    let res= await fetch("/api/login",{
         method: 'POST',
         headers: {
               'Accept': 'application/json',
@@ -11,7 +11,7 @@ async function login(event){
             },
         body:
             JSON.stringify({
-             username: user,
+             user: username,
              password: pass})
     });
 

@@ -8,10 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 @Repository
-public interface UserRepository extends CrudRepository<UserModel,String> {
+public interface UserRepository extends CrudRepository<UserModel,Long> {
 
     @Query("SELECT * FROM USERS")
     public List<UserModel> getAllUsers();
 
+    @Override
+    void delete(UserModel user);
+
+    UserModel findByUsername(String username);
 
 }
