@@ -20,7 +20,7 @@ async function login(event){
         const data= await res.json();
         console.log(data);
         sessionStorage.setItem("usernameLogin",username);
-
+        
         for(var [key,value] of Object.entries(data)){
             console.log("Printing values...");
             console.log(key+' value='+value);
