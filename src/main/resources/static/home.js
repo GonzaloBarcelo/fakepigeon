@@ -1,9 +1,9 @@
 'use strict';
 
-joinGlobalChat = document.querySelector("#joinGlobal");
-joinPrivateChat = document.querySelector("#joinPrivate");
+var joinGlobalChat = document.querySelector("#joinGlobal");
+var joinPrivateChat = document.querySelector("#joinPrivate");
 
-username = null;
+var username = null;
 
 // ESTA FUNCION ES LA ENCARGADA DE LEER LA COOKIE. LA LIMPIA DESPUES DE LEERLA
 
@@ -12,7 +12,7 @@ window.onload = function onSuccessfulLogin() {
     sessionStorage.clear();
 }
 
-window.onload=function testSecureEndpoint(){
+window.onload = function testSecureEndpoint(){
 
     var access_token = localStorage.getItem("access_token");
     console.log(access_token);
