@@ -28,8 +28,6 @@ async function login(event){
 
             }
         }
-
     }
-
-
 }
+

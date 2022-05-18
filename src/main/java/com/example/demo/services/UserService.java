@@ -15,10 +15,12 @@ public class UserService{
     @Autowired
     private UserRepository userRepository;
 
-
+/*
     public List<UserModel> getAllUsers(){
         return userRepository.getAllUsers();
     }
+
+
 
     public boolean userLogin(UserModel userC){
         ArrayList<UserModel> users= (ArrayList<UserModel>) userRepository.getAllUsers();
@@ -58,5 +60,7 @@ public class UserService{
         }
         return false;
     }
+    */
+
 
 }

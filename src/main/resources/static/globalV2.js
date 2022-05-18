@@ -38,7 +38,33 @@ function onConnected() {
 
     )
 }
+window.onload=function testSecureEndpoint(){
 
+    var access_token = localStorage.getItem("access_token");
+    console.log(access_token);
+    if(access_token === null) {
+        document.location.href="/index.html";
+    }
+
+    console.log("Connecting with a secure endpoint");
+    var headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem("access_token")
+            };
+    fetch("/secure", {
+            method: 'GET',
+            headers: headers
+        })
+        .then(data => {
+            if(data.status == 401) {
+                alert("No tienes suficientes permisos");
+            }
+            console.log(data)
+
+            console.log("End Connecting with a secure endpoint");
+        });
+}
 
 function onError(error) {
     connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';

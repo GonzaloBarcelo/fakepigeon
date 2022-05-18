@@ -36,6 +36,4 @@ async function register(event){
         }
 
     }
-
-
 }
