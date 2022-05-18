@@ -14,7 +14,7 @@ window.onload = function onSuccessfulLogin() {
 
 window.onload=function testSecureEndpoint(){
 
-    var access_token = localStorage.getItem("access_token");
+    var access_token = sessionStorage.getItem("access_token");
     console.log(access_token);
     if(access_token === null) {
         document.location.href="/login.html";

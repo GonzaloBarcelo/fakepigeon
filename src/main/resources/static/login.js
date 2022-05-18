@@ -22,16 +22,19 @@ async function login(event){
         sessionStorage.setItem("usernameLogin",username);
         
         for(var [key,value] of Object.entries(data)){
+            sessionStorage.setItem("access_token",value);
             console.log("Printing values...");
             console.log(key+' value='+value);
-            if (value==false){
-                console.log("pasa");
-                document.querySelector('#alertDiv').style.visibility='visible'
-                document.querySelector('#saltos').style.visibility="hidden";
 
-            }
         }
         document.location.href="./home.html";
+    }
+    else{
+        console.log("pasa");
+        document.querySelector('#alertDiv').style.visibility='visible'
+        document.querySelector('#saltos').style.visibility="hidden";
+        document.getElementById('username').innerHTML="";
+        document.getElementById('password').innerHTML="";
     }
 }
 
