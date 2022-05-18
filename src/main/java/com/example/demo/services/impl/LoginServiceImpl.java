@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
+import java.util.Objects;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -26,15 +27,14 @@ public class LoginServiceImpl implements LoginService {
 
         UserModel user1 = userRepository.findByUsername(user);
 
-        //logger.info("User : {}", user1.toString());
-
-        if(password.equals(user1.getPassword())) {
+        if(!Objects.isNull(user1) && password.equals(user1.getPassword())) {
             String value = user1.getUsername() + ":" + user1.getPassword();
             String access_token = Base64.getEncoder().encodeToString(value.getBytes());
             return new LoginServiceResult(true, access_token);
-        } else {
-            return new LoginServiceResult(false);
         }
+
+        return new LoginServiceResult(false);
+
     }
 
     @Override
