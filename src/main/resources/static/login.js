@@ -31,7 +31,7 @@ async function login(event){
     }
     else{
         console.log("pasa");
-        document.querySelector('#alertDiv').style.visibility='visible'
+        document.querySelector('#alertDiv').style.visibility='visible';
         document.querySelector('#saltos').style.visibility="hidden";
         document.getElementById('username').innerHTML="";
         document.getElementById('password').innerHTML="";
