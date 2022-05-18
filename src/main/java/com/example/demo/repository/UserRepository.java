@@ -13,8 +13,6 @@ public interface UserRepository extends CrudRepository<UserModel,Long> {
     @Query("SELECT * FROM USER")
     public List<UserModel> getAllUsers();
 
-
-
     @Override
     void delete(UserModel user);
 

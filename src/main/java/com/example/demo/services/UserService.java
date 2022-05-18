@@ -15,31 +15,6 @@ public class UserService{
     @Autowired
     private UserRepository userRepository;
 
-/*
-    public List<UserModel> getAllUsers(){
-        return userRepository.getAllUsers();
-    }
-
-
-
-    public boolean userLogin(UserModel userC){
-        ArrayList<UserModel> users= (ArrayList<UserModel>) userRepository.getAllUsers();
-        System.out.println("-----Printing all users-----");
-        for(UserModel u:users){
-            System.out.println(u.getUsername()+"---"+u.getPassword());
-        }
-        System.out.println("----------------------------");
-
-        for (UserModel user:users){
-            if (user.equals(userC)){
-                System.out.println("Se ha logeado con exito el usuario: "+userC.getUsername());
-                return true;
-            }
-        }
-        System.out.println("No existe ningun usuario con ese username.");
-        return false;
-    }
-*/
     public boolean userRegister(UserModel userToAdd){
         if (isInUsers(userToAdd)){
             return false;
