@@ -4,11 +4,6 @@ var username = null;
 
 // ESTA FUNCION ES LA ENCARGADA DE LEER LA COOKIE. LA LIMPIA DESPUES DE LEERLA
 
-window.onload = function onSuccessfulLogin() {
-    username = sessionStorage.getItem("usernameLogin");
-    sessionStorage.clear();
-}
-
 window.onload=function testSecureEndpoint(){
 
     var access_token = sessionStorage.getItem("access_token");
@@ -32,9 +27,11 @@ window.onload=function testSecureEndpoint(){
                 alert("No tienes suficientes permisos");
             }
             console.log(data)
-
             console.log("End Connecting with a secure endpoint");
         });
+
+    username = sessionStorage.getItem("usernameLogin");
+    sessionStorage.clear();
 }
 
 // ESTAS FUNCIONES GENERAN NUEVAS COOKIES EN FUNCION DE QUE CHAT SE ACTIVE

@@ -1,10 +1,5 @@
 'use strict';
 
-var usernamePage = document.querySelector('#entry-page');
-var personalPage = document.querySelector('#personal-page');
-var loginForm = document.querySelector('#loginForm');
-var registerForm = document.querySelector('#registerForm');
-
 var privateArea = document.querySelector('#privateArea');
 var privateForm = document.querySelector('#privateForm');
 var receiver = document.querySelector('#receiver');
@@ -13,25 +8,21 @@ var privateMessage = document.querySelector('#private');
 var sender = null;
 var stompClient = null;
 
-function privateConnect(event) {
-    sender = document.querySelector('#usernameLogin').value.trim();
+var colors = [
+    '#2196F3', '#32c787', '#00BCD4', '#ff5652',
+    '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
+];
 
-    if(sender) {
-        usernamePage.classList.add('hidden');
-        personalPage.classList.remove('hidden');
-
-        var socket = new SockJS('/ps');
-        stompClient = Stomp.over(socket);
-
-        stompClient.connect({}, privateOnConnected, privateOnError);
-    }
-    event.preventDefault();
+function get() {
+    sender = sessionStorage.getItem("usernamePrivate");
+    sessionStorage.clear();
 }
 
 window.onload=function testSecureEndpoint(){
 
     var access_token = localStorage.getItem("access_token");
     console.log(access_token);
+
     if(access_token === null) {
         document.location.href="/login.html";
     }
@@ -56,14 +47,22 @@ window.onload=function testSecureEndpoint(){
         });
 }
 
+
+window.onload = function privateConnect() {
+    get();
+
+    if(sender) {
+        var socket = new SockJS('/ps');
+        stompClient = Stomp.over(socket);
+
+        stompClient.connect({}, privateOnConnected);
+    }
+}
+
 function privateOnConnected() {
     const address = '/topic/' + sender;
     stompClient.subscribe(address, privateOnMessageReceived);
-}
-
-function privateOnError(error) {
-    connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
-    connectingElement.style.color = 'red';
+    stompClient.send("/app/chat.privateInitialLoad",{},JSON.stringify({sender}));
 }
 
 function privateSendMessage(event) {
@@ -118,5 +117,4 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-loginForm.addEventListener('submit', privateConnect, true)
 privateForm.addEventListener('submit', privateSendMessage, true)
