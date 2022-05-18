@@ -51,16 +51,14 @@ public class UserController {
         status.put(i,us);
         return ResponseEntity.ok().body(status);
     }
-
+*/
     @PostMapping(path="/register")
     public ResponseEntity<HashMap<UserModel,Boolean>> addUser(@RequestBody UserModel user){
         System.out.println("Añadiendo usuario a la base de datos...");
+        user.setRole("ROLE_USER");
         HashMap<UserModel,Boolean> status = new HashMap<>();
         status.put(user,userService.userRegister(user));
         return ResponseEntity.ok().body(status);
 
     }
-
-
- */
 }

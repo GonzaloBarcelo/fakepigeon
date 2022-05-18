@@ -39,7 +39,7 @@ public class UserService{
         System.out.println("No existe ningun usuario con ese username.");
         return false;
     }
-
+*/
     public boolean userRegister(UserModel userToAdd){
         if (isInUsers(userToAdd)){
             return false;
@@ -60,7 +60,7 @@ public class UserService{
         }
         return false;
     }
-    */
+
 
 
 }
