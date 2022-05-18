@@ -12,6 +12,34 @@ window.onload = function onSuccessfulLogin() {
     sessionStorage.clear();
 }
 
+window.onload=function testSecureEndpoint(){
+
+    var access_token = localStorage.getItem("access_token");
+    console.log(access_token);
+    if(access_token === null) {
+        document.location.href="/login.html";
+    }
+
+    console.log("Connecting with a secure endpoint");
+    var headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem("access_token")
+            };
+    fetch("/secure", {
+            method: 'GET',
+            headers: headers
+        })
+        .then(data => {
+            if(data.status == 401) {
+                alert("No tienes suficientes permisos");
+            }
+            console.log(data)
+
+            console.log("End Connecting with a secure endpoint");
+        });
+}
+
 // ESTAS FUNCIONES GENERAN NUEVAS COOKIES EN FUNCION DE QUE CHAT SE ACTIVE
 
 function loadGlobalChat() {
