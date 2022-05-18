@@ -15,15 +15,13 @@ window.onload = function onSuccessfulLogin() {
 // ESTAS FUNCIONES GENERAN NUEVAS COOKIES EN FUNCION DE QUE CHAT SE ACTIVE
 
 function loadGlobalChat() {
-    let username = document.querySelector('#name').value.trim();
     sessionStorage.setItem("usernameGlobal",username);
     window.open("global.html");
 
 }
 
 function loadPrivateChat() {
-    let sender = document.querySelector('#usernameLogin').value.trim();
-    sessionStorage.setItem("usernamePrivate",sender);
+    sessionStorage.setItem("usernamePrivate",username);
     window.open("private.html");
     
 }
