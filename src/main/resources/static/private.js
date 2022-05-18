@@ -1,5 +1,10 @@
 'use strict';
 
+var usernamePage = document.querySelector('#entry-page');
+var personalPage = document.querySelector('#personal-page');
+var loginForm = document.querySelector('#loginForm');
+var registerForm = document.querySelector('#registerForm');
+
 var privateArea = document.querySelector('#privateArea');
 var privateForm = document.querySelector('#privateForm');
 var receiver = document.querySelector('#receiver');
@@ -8,25 +13,19 @@ var privateMessage = document.querySelector('#private');
 var sender = null;
 var stompClient = null;
 
-var colors = [
-    '#2196F3', '#32c787', '#00BCD4', '#ff5652',
-    '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
-];
-
-function get() {
-    sender = sessionStorage.getItem("usernamePrivate");
-    sessionStorage.clear();
-}
-
-window.onload = function privateConnect() {
-    get();
+function privateConnect(event) {
+    sender = document.querySelector('#usernameLogin').value.trim();
 
     if(sender) {
+        usernamePage.classList.add('hidden');
+        personalPage.classList.remove('hidden');
+
         var socket = new SockJS('/ps');
         stompClient = Stomp.over(socket);
 
-        stompClient.connect({}, privateOnConnected);
+        stompClient.connect({}, privateOnConnected, privateOnError);
     }
+    event.preventDefault();
 }
 
 window.onload=function testSecureEndpoint(){
@@ -60,7 +59,11 @@ window.onload=function testSecureEndpoint(){
 function privateOnConnected() {
     const address = '/topic/' + sender;
     stompClient.subscribe(address, privateOnMessageReceived);
-    stompClient.send("/app/chat.privateInitialLoad",{},JSON.stringify({sender}));
+}
+
+function privateOnError(error) {
+    connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
+    connectingElement.style.color = 'red';
 }
 
 function privateSendMessage(event) {
@@ -115,4 +118,5 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-privateForm.addEventListener('submit', privateSendMessage, true);
+loginForm.addEventListener('submit', privateConnect, true)
+privateForm.addEventListener('submit', privateSendMessage, true)

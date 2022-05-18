@@ -1,5 +1,6 @@
 async function login(event){
     event.preventDefault();
+    console.log("Realizando login");
     var username=document.getElementById('username').value.trim();
     var pass=document.getElementById('password').value.trim();
 
@@ -18,6 +19,8 @@ async function login(event){
     if (res.status ==200){
         const data= await res.json();
         console.log(data);
+        sessionStorage.setItem("usernameLogin",username);
+
         for(var [key,value] of Object.entries(data)){
             console.log("Printing values...");
             console.log(key+' value='+value);
@@ -28,6 +31,7 @@ async function login(event){
 
             }
         }
+        document.location.href="./home.html";
     }
 }
 

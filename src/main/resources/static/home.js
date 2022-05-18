@@ -1,9 +1,9 @@
 'use strict';
 
-joinGlobalChat = document.querySelector("#joinGlobal");
-joinPrivateChat = document.querySelector("#joinPrivate");
+var joinGlobalChat = document.querySelector("#joinGlobalChat");
+var joinPrivateChat = document.querySelector("#joinPrivateChat");
 
-username = null;
+var username = null;
 
 // ESTA FUNCION ES LA ENCARGADA DE LEER LA COOKIE. LA LIMPIA DESPUES DE LEERLA
 
@@ -40,7 +40,7 @@ window.onload=function testSecureEndpoint(){
         });
 }
 
-// ESTAS FUNCIONES GENERAN NUEVAS COOKIES EN FUNCION DE QUE CHAT SE ACTIVe
+// ESTAS FUNCIONES GENERAN NUEVAS COOKIES EN FUNCION DE QUE CHAT SE ACTIVE
 
 function loadGlobalChat() {
     sessionStorage.setItem("usernameGlobal",username);
