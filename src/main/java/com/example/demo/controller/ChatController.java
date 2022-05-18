@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -11,7 +10,6 @@ import com.example.demo.model.PrivateMessageModel;
 import com.example.demo.model.GlobalMessageModel.MessageType;
 import com.example.demo.services.GlobalChatService;
 import com.example.demo.services.PrivateChatService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -44,6 +42,16 @@ public class ChatController {
         }
     }
 
+    @MessageMapping("/chat.privateInitialLoad")
+    public void privateInitialGlobalMessageLoad(@Payload PrivateMessageModel loggedUser) {
+        List<PrivateMessageModel> initialMessageLoad = privateChatService.initialMessageLoad(loggedUser);
+        Iterator<PrivateMessageModel> i = initialMessageLoad.iterator();
+
+        while(i.hasNext()) {
+            messagingTemplate.convertAndSend("/topic/"+ loggedUser.getSender(), i.next());
+        }
+    }
+
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public GlobalMessageModel sendMessage(@Payload GlobalMessageModel chatMessageModel) {
@@ -60,11 +68,12 @@ public class ChatController {
     }
 
     @MessageMapping("/chat.sendPrivateMessage")
-    public void sendMessage(@Payload PrivateMessageModel chatMessageModel) {
+    public void sendPrivateMessage(@Payload PrivateMessageModel chatMessageModel) {
         privateChatService.storeMessage(chatMessageModel);
         messagingTemplate.convertAndSend("/topic/" + chatMessageModel.getReceiver(), chatMessageModel);
         messagingTemplate.convertAndSend("/topic/" + chatMessageModel.getSender(), chatMessageModel);
     }
+
 
     @GetMapping("/Messages")
     public ResponseEntity<HashMap<Integer, ArrayList>> getMessages(){

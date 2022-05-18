@@ -13,11 +13,12 @@ public class PrivateChatService {
     @Autowired
     private PrivateChatRepository privateChatRepository;
 
-    public List<PrivateMessageModel> initialMessageLoad(String loggedUser) {
-        return privateChatRepository.initialMessageLoad(loggedUser);
+    public List<PrivateMessageModel> initialMessageLoad(PrivateMessageModel loggedUser) {
+        return privateChatRepository.initialMessageLoad(loggedUser.getSender());
     }
 
     public void storeMessage(PrivateMessageModel message) {
         privateChatRepository.storeMessage(message.getSender(), message.getReceiver(), message.getContent());
     }
 }
+

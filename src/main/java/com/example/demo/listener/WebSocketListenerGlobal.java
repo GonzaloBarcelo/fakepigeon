@@ -1,6 +1,7 @@
 package com.example.demo.listener;
 
 import com.example.demo.model.GlobalMessageModel;
+import com.example.demo.services.GlobalChatService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +21,12 @@ public class WebSocketListenerGlobal {
     @Autowired
     private SimpMessageSendingOperations messagingTemplate;
 
+    @Autowired
+    private GlobalChatService globalChatService;
+
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
-        logger.info("Received a new web socket connection");
+        logger.info("New web socket connection established");
     }
 
     @EventListener
@@ -30,12 +34,16 @@ public class WebSocketListenerGlobal {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
 
         String username = (String) headerAccessor.getSessionAttributes().get("username");
+
         if(username != null) {
             logger.info("User Disconnected : " + username);
 
             GlobalMessageModel chatMessageGlobal = new GlobalMessageModel();
             chatMessageGlobal.setMessageType(GlobalMessageModel.MessageType.LEAVE);
             chatMessageGlobal.setSender(username);
+            chatMessageGlobal.setContent("$LEAVE");
+
+            globalChatService.storeMessage(chatMessageGlobal);
 
             messagingTemplate.convertAndSend("/topic/public", chatMessageGlobal);
         }

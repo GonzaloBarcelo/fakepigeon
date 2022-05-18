@@ -29,7 +29,17 @@ public class GlobalMessageModel implements Serializable {
         LEAVE
     }
 
+    public GlobalMessageModel(MessageType messageType, String sender, String content) {
+        this.messageType = messageType;
+        this.sender = sender;
+        this.content = content;
+    }
+
     public MessageType getMessageType() {
         return this.messageType;
+    }
+
+    public void setMessageType(MessageType type) {
+        this.messageType = type;
     }
 }
