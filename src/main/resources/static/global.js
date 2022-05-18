@@ -1,12 +1,7 @@
 'use strict';
-
-var usernamePage = document.querySelector('#entry-page');
-var chatPage = document.querySelector('#chat-page');
-var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
-var connectingElement = document.querySelector('.connecting');
 
 var stompClient = null;
 var username = null;
@@ -16,53 +11,9 @@ var colors = [
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 
-function connect(event) {
-    username = document.querySelector('#name').value.trim();
-
-    if(username) {
-        usernamePage.classList.add('hidden');
-        chatPage.classList.remove('hidden');
-
-        var socket = new SockJS('/ws');
-        stompClient = Stomp.over(socket);
-
-        stompClient.connect({}, onConnected, onError);
-    }
-    event.preventDefault();
-}
-
-
-function onConnected() {
-    stompClient.subscribe('/topic/public', onMessageReceived);
-    stompClient.send("/app/chat.initialLoad")
-    stompClient.send("/app/chat.addUser",
-        {},
-        JSON.stringify({sender: username, messageType: 'JOIN', content: '$JOIN'})
-    
-    )
-
-    connectingElement.classList.add('hidden');
-}
-
-
-function onError(error) {
-    connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
-    connectingElement.style.color = 'red';
-}
-
-
-function sendMessage(event) {
-    var messageContent = messageInput.value.trim();
-    if(messageContent && stompClient) {
-        var chatMessage = {
-            sender: username,
-            content: messageInput.value,
-            messageType: 'CHAT'
-        };
-        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
-        messageInput.value = '';
-    }
-    event.preventDefault();
+function get() {
+    username = sessionStorage.getItem("usernameGlobal");
+    sessionStorage.clear();
 }
 
 window.onload=function testSecureEndpoint(){
@@ -93,9 +44,37 @@ window.onload=function testSecureEndpoint(){
         });
 }
 
-function onError(error) {
-    connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
-    connectingElement.style.color = 'red';
+window.onload = function connect() {
+    get();
+
+    if(username) {
+        var socket = new SockJS('/ws');
+        stompClient = Stomp.over(socket);
+
+        stompClient.connect({}, onConnected);
+    }
+}
+
+
+function onConnected() {
+    stompClient.subscribe('/topic/public', onMessageReceived);
+    stompClient.send("/app/chat.addUser",{},JSON.stringify({sender: username, messageType: 'JOIN', content: '$JOIN'}));
+    stompClient.send("/app/chat.initialLoad");
+}
+
+
+function sendMessage(event) {
+    var messageContent = messageInput.value.trim();
+    if(messageContent && stompClient) {
+        var chatMessage = {
+            sender: username,
+            content: messageInput.value,
+            messageType: 'CHAT'
+        };
+        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+        messageInput.value = '';
+    }
+    event.preventDefault();
 }
 
 
@@ -125,11 +104,6 @@ function onMessageReceived(payload) {
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
     }
-    console.log("-------------------------");
-        console.log(message.messageType);
-        console.log(message.messageSender);
-        console.log(message.messageContent);
-        console.log("-------------------------");
 
     var textElement = document.createElement('p');
     var messageText = document.createTextNode(message.content);
@@ -151,20 +125,4 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-function register(event){
-    var name= document.querySelector("#usernameRegister").value.trim();
-    var pass= document.querySelector("#usernameRegister").value.trim();
-    if(name && pass){
-        var user={
-                username: name,
-                password: pass
-            };
-        stompClient.send("/addUser",{},JSON.stringify(user));
-    }
-
-}
-
-usernameForm.addEventListener('submit', connect, true)
-messageForm.addEventListener('submit', sendMessage, true)
-
-registerUserForm.addEventListener('submit', register,true)
+messageForm.addEventListener('submit', sendMessage, true);
