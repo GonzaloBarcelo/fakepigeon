@@ -1,8 +1,5 @@
 'use strict';
 
-var joinGlobalChat = document.querySelector("#joinGlobalChat");
-var joinPrivateChat = document.querySelector("#joinPrivateChat");
-
 var username = null;
 
 // ESTA FUNCION ES LA ENCARGADA DE LEER LA COOKIE. LA LIMPIA DESPUES DE LEERLA
@@ -53,6 +50,3 @@ function loadPrivateChat() {
     window.open("private.html");
     
 }
-
-joinGlobalChat.addEventListener('submit', loadGlobalChat, true);
-joinPrivateChat.addEventListener('submit', loadPrivateChat, true);
