@@ -40,7 +40,7 @@ window.onload=function testSecureEndpoint(){
         });
 }
 
-// ESTAS FUNCIONES GENERAN NUEVAS COOKIES EN FUNCION DE QUE CHAT SE ACTIVE
+// ESTAS FUNCIONES GENERAN NUEVAS COOKIES EN FUNCION DE QUE CHAT SE ACTIVe
 
 function loadGlobalChat() {
     sessionStorage.setItem("usernameGlobal",username);
