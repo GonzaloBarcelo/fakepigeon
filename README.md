@@ -1,4 +1,4 @@
-#PAT PROYECTO FINAL. FAKEPIGEON
+# PAT PROYECTO FINAL. FAKEPIGEON
 ## DESCRIPCIÓN
 Fakepigeon es una aplicación de chat online que permite al usuario mensajería tanto privada como la participación en un chat global de toda la aplicación. Ha sido realizada en Java empleando el framework de SpringBoot. Emplea elementos tales como Spring Security y el broker de mensajeria STOMP.
 
