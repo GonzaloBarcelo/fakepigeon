@@ -11,41 +11,16 @@ var colors = [
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 
-function get() {
-    username = sessionStorage.getItem("usernameGlobal");
-    sessionStorage.clear();
-}
-
 window.onload=function testSecureEndpoint(){
 
-    var access_token = localStorage.getItem("access_token");
+    var access_token = sessionStorage.getItem("access_token");
     console.log(access_token);
+
     if(access_token === null) {
         document.location.href="/login.html";
     }
-
-    console.log("Connecting with a secure endpoint");
-    var headers = {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + localStorage.getItem("access_token")
-            };
-    fetch("/secure", {
-            method: 'GET',
-            headers: headers
-        })
-        .then(data => {
-            if(data.status == 401) {
-                alert("No tienes suficientes permisos");
-            }
-            console.log(data)
-
-            console.log("End Connecting with a secure endpoint");
-        });
-}
-
-window.onload = function connect() {
-    get();
+    
+    username = sessionStorage.getItem("username");
 
     if(username) {
         var socket = new SockJS('/ws');
@@ -54,7 +29,6 @@ window.onload = function connect() {
         stompClient.connect({}, onConnected);
     }
 }
-
 
 function onConnected() {
     stompClient.subscribe('/topic/public', onMessageReceived);

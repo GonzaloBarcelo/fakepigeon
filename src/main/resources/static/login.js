@@ -19,18 +19,14 @@ async function login(event){
     if (res.status ==200){
         const data= await res.json();
         console.log(data);
-        sessionStorage.setItem("usernameLogin",username);
+        sessionStorage.setItem("username",username);
         
         for(var [key,value] of Object.entries(data)){
             sessionStorage.setItem("access_token",value);
-            console.log("Printing values...");
-            console.log(key+' value='+value);
-
         }
         document.location.href="./home.html";
     }
     else{
-        console.log("pasa");
         document.querySelector('#alertDiv').style.visibility='visible';
         document.querySelector('#saltos').style.visibility="hidden";
         document.getElementById('username').innerHTML="";
