@@ -9,3 +9,4 @@ function openlogin(event){
     event.preventDefault();
     document.location.href="/login.html";
 }
+

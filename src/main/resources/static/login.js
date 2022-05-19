@@ -28,7 +28,8 @@ async function login(event){
     }
     else{
         document.querySelector('#alertDiv').style.visibility='visible';
-        document.querySelector('#saltos').style.visibility="hidden";
+
+        document.querySelector('#alertDiv').classList.add("tada");
         document.getElementById('username').innerHTML="";
         document.getElementById('password').innerHTML="";
     }
