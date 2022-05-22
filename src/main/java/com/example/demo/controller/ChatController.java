@@ -32,13 +32,13 @@ public class ChatController {
     @Autowired
     private PrivateChatService privateChatService;
     
-    @MessageMapping("/chat.initialLoad")
-    public void initialGlobalMessageLoad() {
+    @MessageMapping("/chat.globalInitialLoad")
+    public void initialGlobalMessageLoad(@Payload GlobalMessageModel loggedUser) {
         List<GlobalMessageModel> initialMessageLoad = globalChatService.initialMessageLoad();
         Iterator<GlobalMessageModel> i = initialMessageLoad.iterator();
 
         while(i.hasNext()) {
-            messagingTemplate.convertAndSend("/topic/public", i.next());
+            messagingTemplate.convertAndSend("/topic/public/" + loggedUser.getSender(), i.next());
         }
     }
 

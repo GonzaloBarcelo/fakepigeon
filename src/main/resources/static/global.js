@@ -22,6 +22,10 @@ window.onload=function testSecureEndpoint(){
     
     username = sessionStorage.getItem("username");
 
+    while (messageArea.firstChild) {
+        messageArea.removeChild(messageArea.firstChild);
+    }
+
     if(username) {
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
@@ -31,9 +35,11 @@ window.onload=function testSecureEndpoint(){
 }
 
 function onConnected() {
+    stompClient.subscribe('/topic/public/' + username, onMessageReceived);
+    stompClient.send("/app/chat.globalInitialLoad",{},JSON.stringify({sender: username, messageType: 'JOIN', content: '$JOIN'}));
+
     stompClient.subscribe('/topic/public', onMessageReceived);
     stompClient.send("/app/chat.addUser",{},JSON.stringify({sender: username, messageType: 'JOIN', content: '$JOIN'}));
-    stompClient.send("/app/chat.initialLoad");
 }
 
 
