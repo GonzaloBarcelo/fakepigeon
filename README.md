@@ -18,19 +18,19 @@ En primer lugar, para acceder al chat se necesitará autenticación previa que s
 
 Como se aprecia en la imagen, se darán dos opciones: "Register" para introdir datos y crear un perfil como nuevo ususario y "Log in" para los usuarios ya registrados. Estas dos páginas se muestran en las imágenes a continuación.
 
-*imagen de register.html*
-*imagen de login.html*
+![register.html](./src/main/resources/media/register.png)
+![login.html](./src/main/resources/media/login.png)
 
 Si ha iniciado sesión en la página login.html será redirigido a la página principal home.html; si ha necesitado registrarse, el usuario ha de previamente iniciar sesión para entrar en home.html.
 
-*imagen de home.html*
+![home.html](./src/main/resources/media/home.png)
 
 La página home.html le dará la bienvenida y le ofrecerá dos opciones. "Join GlobalChat" le dará entrada a un chat común al que tienen acceso todos los usuario de la aplicación. Funciona como un chat de grupo en el que todos pueden participar con derechos de lectura y escritura.
 
-*imagen de global.html*
+![global.html](./src/main/resources/media/global.png)
 
 Si se ha elegido la otra opción, "Join PrivateChat", accederá a la página private.html donde elegirá el usuario con el que quiere entablar conversación y comenzará un chat privado. A diferencia del GlobalChat, esta conversación ocurre entre dos usuarios solamente y ningún otro tiene acceso a ella.
 
-*imagen de private.html*
+![private.html](./src/main/resources/media/private.png)
 
 Por último, indicar que se ha obtenido el dominio fakepigeons.net para un acceso más fácil a la aplicación.
