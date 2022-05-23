@@ -16,7 +16,7 @@ En primer lugar, para acceder al chat se necesitará autenticación previa que s
 
 ![index.html](./src/main/resources/media/index.png)
 
-Como se aprecia en la imagen, se darán dos opciones: "Register" para introdir datos y crear un perfil como nuevo ususario y "Log in" para los usuarios ya registrados. Estas dos páginas se muestran en las imágenes a continuación.
+Como se aprecia en la imagen, se darán dos opciones: "Register" para introducir datos y crear un perfil como nuevo ususario y "Log in" para los usuarios ya registrados. Estas dos páginas se muestran en las imágenes a continuación.
 
 ![register.html](./src/main/resources/media/register.png)
 
@@ -34,4 +34,4 @@ Si se ha elegido la otra opción, "Join PrivateChat", accederá a la página pri
 
 ![private.html](./src/main/resources/media/private.png)
 
-Por último, indicar que se ha obtenido el dominio fakepigeons.net para un acceso más fácil a la aplicación.
+Por último, indicar que se ha obtenido el dominio fakepigeons.net para un acceso más fácil a la aplicación. Por razones de seguridad, este dominio está actualmente cerrado, pero si tiene interés en probarlo no dude en contactar con el equipo.
