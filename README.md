@@ -19,6 +19,7 @@ En primer lugar, para acceder al chat se necesitará autenticación previa que s
 Como se aprecia en la imagen, se darán dos opciones: "Register" para introdir datos y crear un perfil como nuevo ususario y "Log in" para los usuarios ya registrados. Estas dos páginas se muestran en las imágenes a continuación.
 
 ![register.html](./src/main/resources/media/register.png)
+
 ![login.html](./src/main/resources/media/login.png)
 
 Si ha iniciado sesión en la página login.html será redirigido a la página principal home.html; si ha necesitado registrarse, el usuario ha de previamente iniciar sesión para entrar en home.html.
