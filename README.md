@@ -14,7 +14,7 @@ A continuación se explicará a través de imágenes el funcionamiento de la int
 
 En primer lugar, para acceder al chat se necesitará autenticación previa que se lleva a efecto en la página index.html.
 
-![index.html](./src/main/resources/media/index.png)
+![index.html](./src/main/resources/media/index.png){width="100px" height="50px"}
 
 Como se aprecia en la imagen, se darán dos opciones: "Register" para introdir datos y crear un perfil como nuevo ususario y "Log in" para los usuarios ya registrados. Estas dos páginas se muestran en las imágenes a continuación.
 
