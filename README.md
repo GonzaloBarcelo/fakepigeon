@@ -35,3 +35,6 @@ Si se ha elegido la otra opción, "Join PrivateChat", accederá a la página pri
 ![private.html](./src/main/resources/media/private.png)
 
 Por último, indicar que se ha obtenido el dominio fakepigeons.net para un acceso más fácil a la aplicación. Por razones de seguridad, este dominio está actualmente cerrado, pero si tiene interés en probarlo no dude en contactar con el equipo.
+
+## PRUEBA EN LOCAL
+El software se puede probar en local. Abriendo dos o más sesiones en una misma máquina con cuentas diferentes.
